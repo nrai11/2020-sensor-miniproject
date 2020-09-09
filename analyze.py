@@ -48,9 +48,31 @@ if __name__ == "__main__":
     p.add_argument("file", help="path to JSON data file")
     P = p.parse_args()
 
-    file = Path(P.file).expanduser()
+    #data['temperature'].median()
 
+    file = Path(P.file).expanduser()
     data = load_data(file)
+
+    df1 = data['temperature']
+    df2 = data['occupancy']
+
+    df1['combine'] = df1[['class1', 'lab1', 'office']].min(axis = 1)
+
+    #print(df1['combine'].describe())
+    #print(df1['combine'].quantile([0.2,0.4,0.6,0.8]))
+
+    print('Temperature:\nmedian is {}\nvariance is {}'.format(df1['combine'].median(),
+                                                df1['combine'].var()))
+
+
+    df2['combine2'] = df2[['class1', 'lab1', 'office']].min(axis = 1)
+
+    #print(df2['combine2'].describe())
+    #print(df2['combine2'].quantile([0.2,0.4,0.6,0.8]))
+
+    print('Occupancy:\nmedian is {}\nvariance is {}'.format(df2['combine2'].median(),
+                                                df2['combine2'].var()))
+
 
     for k in data:
         # data[k].plot()
@@ -60,4 +82,4 @@ if __name__ == "__main__":
         plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
         plt.xlabel("Time (seconds)")
 
-    plt.show()
+    # plt.show()
