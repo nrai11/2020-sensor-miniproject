@@ -17,7 +17,6 @@ import asyncio
 
 from sp_iotsim.client import main
 
-
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="WebSocket client")
     p.add_argument("-l", "--log", help="file to log JSON data")
@@ -29,7 +28,7 @@ if __name__ == "__main__":
         type=int,
         default=100000,
     )
-    P = p.parse_args()
+    P = p.parse_args()   
 
     try:
         asyncio.run(main(P.port, P.host, P.max_packets, P.log))
