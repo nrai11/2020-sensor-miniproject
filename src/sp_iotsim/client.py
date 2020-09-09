@@ -37,5 +37,7 @@ async def main(port: int, addr: str, max_packets: int, log_file: Path):
                 pass
                 # print(f"{i} total messages received")
             print(data)
-            file.write(data + "\n")
-            file.flush()
+            if log_file:
+                file.write(data + "\n")
+                file.flush()
+        file.close()
