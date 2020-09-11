@@ -25,7 +25,9 @@ We ran the server and collected the data in the file 'data.txt', which has 3130 
  office | 2.0 | 1.808376 
  
 * We plotted probability density function for each sensor type from the office room
+
 **Temperature sensor**
+<img src="./img/pdf_temp.png" width="45%" />
 
 ## Task 3:
 * For our anomaly detection algorithm, we defined an anomaly to be outside of two standard deviations of the mean, and used these values to find anomalies and add them to a list, which is then returned. This was done in the analyze.py file, in the function detectAnomalies.
