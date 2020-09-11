@@ -45,6 +45,24 @@ def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
     return data
 
+def detectAnomalies(data):
+    #list to add anomalies to, to be returned
+    anomalies = []
+    
+    # calculate standard deviation
+    standardDev = np.std(data)
+    detect_anomaly = standardDev * 2
+    
+    meanVal = np.mean(data)
+    # define outliers as outside 2 standard deviations from mean
+    lowerBound = meanVal - detect_anomaly
+    upperBound = meanVal + detect_anomaly
+
+    # loop through data to identify anomalies
+    for val in data:
+        if val > upperBound or val < lowerBound:
+            anomalies.append(val)
+    return anomalies
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
@@ -106,3 +124,6 @@ if __name__ == "__main__":
     plt.figure(6)
     plt.plot( dist_space, kde(dist_space) )
     plt.show()
+    
+    findAnomalies = detectAnomalies(df1['combine'])
+    print(findAnomalies)
