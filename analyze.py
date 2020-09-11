@@ -47,11 +47,11 @@ def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 def detectAnomalies(data):
     #list to add anomalies to, to be returned
     anomalies = []
-    
+
     # calculate standard deviation
     standardDev = np.std(data)
     detect_anomaly = standardDev * 2
-    
+
     meanVal = np.mean(data)
     # define outliers as outside 2 standard deviations from mean
     lowerBound = meanVal - detect_anomaly
@@ -75,8 +75,7 @@ if __name__ == "__main__":
     df2 = data['occupancy']
     df3 = data['co2']
 
-    print(df1.describe())
-
+    #Print temperature and ccupancy median and variance
     print('Temperature Median:\n{}\nTemperature Variance:\n{}'.format(df1.median(),
                                                 df1.var()))
     print('-------------------------------')
@@ -84,19 +83,22 @@ if __name__ == "__main__":
                                                 df2.var()))
     print('-------------------------------')
 
-
+    #plot PDF of temperature sensor in office room
     plt.figure(0)
     plt.title("PDF of temperature sensor in office")
     pdf_temp = df1[['office']].min(axis = 1).plot.kde()
 
+    #plot PDF of occupancy sensor in office room
     plt.figure(1)
     plt.title("PDF of occupancy sensor in office")
     pdf_occ = df2[['office']].min(axis = 1).plot.kde()
 
+    #plot PDF of co2 sensor in office room
     plt.figure(2)
     plt.title("PDF of co2 sensor in office")
     pdf_co2 = df3[['office']].min(axis = 1).plot.kde()
 
+    #plot PDF of 3 sensors in 3 rooms in histogram format
     for k in data:
         # data[k].plot()
         time = data[k].index
@@ -105,19 +107,20 @@ if __name__ == "__main__":
         plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
         plt.xlabel("Time (seconds)")
 
-    #plt.show()
-
+    #find time interval median and variance
     CO2 = data['co2']
     diff = np.diff(CO2.index).astype(np.int64) * 1e-9
     print('Time interval median:\n{}\nTime interval variance:\n{}'.format(np.median(diff), np.var(diff)))
 
-    # print('Actual low: {}\nActual high: {}'.format(np.min(diff), np.max(diff)))
+
+    #find actual lowest and highest time interval
     [low, high] = np.quantile(diff, [0.5, 0.95])
-    # print('-------------------------------')
-    # print('quantile 0.05: {}\nquantile 0.95: {}'.format(low, high))
+
+    #Remove 0.5 and 0.95 quantile from data and plot PDF
     diff1 = [d for d in diff if d > low and d < high]
     kde = gaussian_kde(diff1)
     dist_space = linspace( min(diff1), max(diff1), 100 )
+
 
     plt.figure(6)
     plt.title("PDF of time interval (removed 0.05 and 0.95 quantile)")
