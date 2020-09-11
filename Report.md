@@ -22,7 +22,7 @@ We ran the server and collected the data in the file 'data.txt', which has 3130 
  
 * We plotted probability density function for each sensor type from the office room which are as follow: 
 
-*PDF are plotted in two formats, the left one is line graph and the righ one is histogram.*
+*PDF are plotted in two formats, the left one is line graph and the right one is histogram.*
 
 **Temperature sensor**
 
@@ -45,10 +45,11 @@ We ran the server and collected the data in the file 'data.txt', which has 3130 
 > Consider the value of median, there might be errors in readings
 
 **Probability density function of the time interval**
+
 <img src="./img/pdf_time.png" width="45%" />
 
 
-What is the mean and variance of the time interval of the sensor readings? Please plot its probability density function. Does it mimic a well-known distribution for connection intervals in large systems? [8 points]
+What is the mean and variance of the time interval of the sensor readings? Please plot its probability density function. Does it mimic a well-known distribution for connection intervals in large systems? [8 points] 
 
 ## Task 3:
 * For our anomaly detection algorithm, we defined an anomaly to be outside of two standard deviations of the mean, and used these values to find anomalies and add them to a list, which is then returned. This was done in the analyze.py file, in the function detectAnomalies.
