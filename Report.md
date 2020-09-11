@@ -21,7 +21,8 @@ We ran the server and collected the data in the file 'data.txt', which has 3130 
  office | 2.0 | 1.808376 
  
 * We plotted probability density function for each sensor type from the office room which are as follow: 
-PDF are plotted in two formats, the left one is line graph and the righ one is histogram.
+
+*PDF are plotted in two formats, the left one is line graph and the righ one is histogram.*
 
 **Temperature sensor**
 
