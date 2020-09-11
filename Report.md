@@ -10,17 +10,17 @@ What is the mean and variance of the time interval of the sensor readings? Pleas
 
 We ran the server and collected the data in the file 'data.txt', which has 3130 data values.
 * For the **temperature data**, the median and variance of each room are: 
-| Room | Median | Variance | 
-| ----------- | ----------- | ----------- |
-| class1 | 26.980973 | 20.570161 |
-| lab1 | 21.000710 | 3.135624 |
-| office | 23.008981 | 185.155364 |
+ Room | Median | Variance 
+ ----------- | ----------- | ----------- 
+ class1 | 26.980973 | 20.570161 
+ lab1 | 21.000710 | 3.135624 
+ office | 23.008981 | 185.155364 
 * For the **occupancy data**, the median and variance of each room are:
-| Room | Median | Variance | 
-| ----------- | ----------- | ----------- |
-| class1 | 19.0 | 19.203707 |
-| lab1 | 5.0 | 5.099918 |
-| office | 2.0 | 1.808376 |
+ Room | Median | Variance 
+ ----------- | ----------- | ----------- 
+ class1 | 19.0 | 19.203707 
+ lab1 | 5.0 | 5.099918 
+ office | 2.0 | 1.808376 
 * We plotted probability density function for each sensor type from the office room
 **Temperature sensor**
 
