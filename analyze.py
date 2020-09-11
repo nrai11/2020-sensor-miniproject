@@ -16,6 +16,9 @@ from datetime import datetime
 import typing as T
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.stats.kde import gaussian_kde
+from numpy import linspace
+#import scipy.stats as ss
 
 
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
@@ -37,7 +40,7 @@ def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
     data = {
         "temperature": pandas.DataFrame.from_dict(temperature, "index").sort_index(),
         "occupancy": pandas.DataFrame.from_dict(occupancy, "index").sort_index(),
-        "co2": pandas.DataFrame.from_dict(co2, "index").sort_index(),
+        "co2": pandas.DataFrame.from_dict(co2, "index").sort_index()
     }
 
     return data
@@ -55,31 +58,51 @@ if __name__ == "__main__":
 
     df1 = data['temperature']
     df2 = data['occupancy']
-
-    df1['combine'] = df1[['class1', 'lab1', 'office']].min(axis = 1)
-
-    #print(df1['combine'].describe())
-    #print(df1['combine'].quantile([0.2,0.4,0.6,0.8]))
-
-    print('Temperature:\nmedian is {}\nvariance is {}'.format(df1['combine'].median(),
-                                                df1['combine'].var()))
+    df3 = data['co2']
 
 
-    df2['combine2'] = df2[['class1', 'lab1', 'office']].min(axis = 1)
+    print('Temperature Median:\n{}\nTemperature Variance:\n{}'.format(df1.median(),
+                                                df1.var()))
+    print('-------------------------------')
+    print('Occupancy Median:\n{}\nOccupancy Variance:\n{}'.format(df2.median(),
+                                                df2.var()))
+    print('-------------------------------')
 
-    #print(df2['combine2'].describe())
-    #print(df2['combine2'].quantile([0.2,0.4,0.6,0.8]))
 
-    print('Occupancy:\nmedian is {}\nvariance is {}'.format(df2['combine2'].median(),
-                                                df2['combine2'].var()))
+    plt.figure(0)
+    plt.title("PDF of temperature sensor in office")
+    pdf_temp = df1[['office']].min(axis = 1).plot.kde()
 
+    plt.figure(1)
+    plt.title("PDF of occupancy sensor in office")
+    pdf_occ = df2[['office']].min(axis = 1).plot.kde()
+
+    plt.figure(2)
+    plt.title("PDF of co2 sensor in office")
+    pdf_co2 = df3[['office']].min(axis = 1).plot.kde()
 
     for k in data:
         # data[k].plot()
         time = data[k].index
         data[k].hist()
-        plt.figure()
+        plt.figure(3)
         plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
         plt.xlabel("Time (seconds)")
 
-    # plt.show()
+    #plt.show()
+
+    CO2 = data['co2']
+    diff = np.diff(CO2.index).astype(np.int64) * 1e-9
+    print('Time interval median:\n{}\nTime interval variance:\n{}'.format(np.median(diff), np.var(diff)))
+
+    # print('Actual low: {}\nActual high: {}'.format(np.min(diff), np.max(diff)))
+    [low, high] = np.quantile(diff, [0.5, 0.95])
+    # print('-------------------------------')
+    # print('quantile 0.05: {}\nquantile 0.95: {}'.format(low, high))
+    diff1 = [d for d in diff if d > low and d < high]
+    kde = gaussian_kde(diff1)
+    dist_space = linspace( min(diff1), max(diff1), 100 )
+
+    plt.figure(6)
+    plt.plot( dist_space, kde(dist_space) )
+    plt.show()
