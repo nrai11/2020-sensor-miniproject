@@ -10,6 +10,7 @@ What is the mean and variance of the time interval of the sensor readings? Pleas
 
 We ran the server and collected the data in the file 'data.txt', which has 3130 data values.
 * For the **temperature data**, the median and variance of each room are: 
+
  Room | Median | Variance 
  ----------- | ----------- | ----------- 
  class1 | 26.980973 | 20.570161 
