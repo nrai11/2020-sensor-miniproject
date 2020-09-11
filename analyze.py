@@ -18,7 +18,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats.kde import gaussian_kde
 from numpy import linspace
-#import scipy.stats as ss
 
 
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
@@ -51,8 +50,6 @@ if __name__ == "__main__":
     p.add_argument("file", help="path to JSON data file")
     P = p.parse_args()
 
-    #data['temperature'].median()
-
     file = Path(P.file).expanduser()
     data = load_data(file)
 
@@ -60,6 +57,7 @@ if __name__ == "__main__":
     df2 = data['occupancy']
     df3 = data['co2']
 
+    print(df1.describe())
 
     print('Temperature Median:\n{}\nTemperature Variance:\n{}'.format(df1.median(),
                                                 df1.var()))
@@ -104,5 +102,6 @@ if __name__ == "__main__":
     dist_space = linspace( min(diff1), max(diff1), 100 )
 
     plt.figure(6)
+    plt.title("PDF of time interval (removed 0.05 and 0.95 quantile)")
     plt.plot( dist_space, kde(dist_space) )
     plt.show()
