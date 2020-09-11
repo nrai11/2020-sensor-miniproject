@@ -20,22 +20,19 @@ We ran the server and collected the data in the file 'data.txt', which has 3130 
  lab1 | 5.0 | 5.099918 
  office | 2.0 | 1.808376 
  
-* We plotted probability density function for each sensor type from the office room
+* We plotted probability density function for each sensor type from the office room which are as follow:
 
 **Temperature sensor**
 
-<img src="./img/pdf_temp.png" width="45%" />
-<img src="./img/hist_temp.png" width="45%" />
+<img src="./img/pdf_temp.png" width="45%" /><img src="./img/hist_temp.png" width="45%" />
 
 **Occupancy sensor**
 
-<img src="./img/pdf_occ.png" width="45%" />
-<img src="./img/hist_occ.png" width="45%" />
+<img src="./img/pdf_occ.png" width="45%" /><img src="./img/hist_occ.png" width="45%" />
 
 **CO2 sensor**
 
-<img src="./img/pdf_co2.png" width="45%" />
-<img src="./img/hist_co2.png" width="45%" />
+<img src="./img/pdf_co2.png" width="45%" /><img src="./img/hist_co2.png" width="45%" />
 
 * We ran the server for a period of time. The median and variance of **Time interval** between sensor readings are:
 
