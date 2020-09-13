@@ -53,7 +53,7 @@ What is the mean and variance of the time interval of the sensor readings? Pleas
 
 ## Task 3:
 * For our anomaly detection algorithm, we defined an anomaly to be outside of two standard deviations of the mean, and used these values to find anomalies and add them to a list, which is then returned. This was done in the analyze.py file, in the function detectAnomalies. The output of the function is displayed below, and shows a list of all the anomalies from each room, as well as the percentage of anomalies out of the total values collected.
-* <img src="./img/anomalies.PNG" width="100%" />
+ <img src="./img/anomalies.PNG" width="100%" />
 * A persistent change in temperature may indicate a failed sensor, but it could also mean there is something wrong with the temperature of the room itself (e.g. a persistent higher temperature could indicate a fire). This is dependent on whether the sensor would continue to perform and send data under these conditions, but if so, this could be a reason for a persistent change in temperature, so this would not always indicate a failed sensor. However, since this project was using simulated sensors, I would assume that if there is a persistent change, it would indicate a malfunction with the simulated sensor since there isn't a physical room which may be having an external issue causing a change in temperature. 
 * Since for our algorithm, we defined an upper and lower bound for detecting an anomaly, we can use those as our possible bounds for room temperature: 
 
