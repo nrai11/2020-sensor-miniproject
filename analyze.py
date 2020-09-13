@@ -127,5 +127,5 @@ if __name__ == "__main__":
     plt.plot( dist_space, kde(dist_space) )
     plt.show()
     
-    findAnomalies = detectAnomalies(df1['combine'])
+    findAnomalies = detectAnomalies(df1['office'])
     print(findAnomalies)
