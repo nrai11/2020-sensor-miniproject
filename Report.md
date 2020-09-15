@@ -36,20 +36,22 @@ We ran the server and collected the data in the file 'data.txt', which has 3130 
 
 <img src="./img/pdf_co2.png" width="45%" /><img src="./img/hist_co2.png" width="45%" />
 
-* We ran the server for a period of time. The median and variance of **Time interval** between sensor readings are:
+* We ran the server for a period of time. The mean and variance of **Time interval** between sensor readings are:
 
- Median | Variance 
+ Mean | Variance 
  ----------- | ----------- 
-0.6966920000000001 | 1.062734582236113
+1.0186770140620007 | 1.062734582236113
 
-> Consider the value of median, there might be errors in readings
 
 **Probability density function of the time interval**
 
 <img src="./img/pdf_time.png" width="45%" />
 
+Here, the 0.5 and 0.95 quantile are removed 
 
-What is the mean and variance of the time interval of the sensor readings? Please plot its probability density function. Does it mimic a well-known distribution for connection intervals in large systems? [8 points] 
+
+* Does it mimic a well-known distribution for connection intervals in large systems? [8 points] 
+
 
 ## Task 3:
 * For our anomaly detection algorithm, we defined an anomaly to be outside of two standard deviations of the mean, and used these values to find anomalies and add them to a list, which is then returned. This was done in the analyze.py file, in the function detectAnomalies. The output of the function is displayed below, and shows a list of all the anomalies from each room, as well as the percentage of anomalies out of the total values collected.
@@ -66,6 +68,8 @@ What is the mean and variance of the time interval of the sensor readings? Pleas
  * The bounds for both class1 and lab1 seem reasonable, whereas for the office, the bounds are outside of what would be considered a normal temperature for a building. This likely means that the standard deviation was greater for the office, so the finding bounds from the mean lead to a greater range of 'valid' temperatures than would actually be reasonable. Since our algorithm was relatively basic, it did not account for this issue. 
  
 ## Task 4:
+* Sensor readings are done in time interval of millisecond or less to ensure accuracy in readings because in the real world, there is no places that always have a stable conditions and changes in these conditions can be within millisecond or less. Sensors can also be damaged by unprecedented incident/ uncontrollable enviromental factors which can result in sensor failures and erratic readings. In this simulation, we see anomalies in different sensor readings, this could be comparable to a real world scenario where for example, geotechnical sensors are damaged by natural lighting.
+* This simulation fails to account for: first, the transmit time of each sensor in different rooms. Currently the simulation wait for readings from all three sensors to be collected before the readings are sent to the clients. In a real world scenario, each sensors might have different transmit time (e.g. temperature sensors might have readings out in 0.4 seconds but co2 has transmit time of 0.6 seconds). All readings should be sent to clients accordingly, there should be no wait time; data from different sensors do not need to be sent to clients at the same time. Second, this simulation fails to account for the fluctuations in data readings from all three sensors. As seen from data readings collected from three sensors, some of the variance values are quite high. If you use {dataframe name}.describe() to view the min and max data, you can see that some of the max and min values quite differ from the mean value. Sensor readings should be able to detect irregular fluctuations in readings and inform clients of the error and remove the irregular fluctuations from the readings.
 * The difficulty of initially using this Python websockets library seemed to be less compared to a compiled language like C++. For context, in our team, we were both unfamiliar with Python as well as working with websockets. From looking at the examples of C++ websockets libraries, as well as an [online example of a C++ websocket](https://www.netburner.com/learn/websockets-for-real-time-web-and-iot-applications/), we found the Python syntax, which is much closer to pseudo-code/english, made it much easier to understand this Python websockets library, and what particular parts of the code were doing. Furthermore, there was relatively thorough documentation of the Python library that made working with it easier.
 
 * If the server polled the sensors, there would inevitably be connections where the sensors don't yet have data. On the other hand, if the sensors reach out to the server, that wouldn't be an issue as it would be guaranteed that there was data to be passed along. Additionally, having the sensors send the data when they get it means that they wouldn't need to use their storage to keep data if the server hasn't polled it yet, which may be good if they have limited storage. 
