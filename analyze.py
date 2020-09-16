@@ -136,9 +136,11 @@ if __name__ == "__main__":
     findAnomalies = detectAnomalies(df1['lab1'])
     print('Anomalies in lab1: ',findAnomalies)
     print('Percent of anomalies in office: ', len(findAnomalies)/len(df1['lab1']))
-
+    
+    filtered = [x for x in df1['lab1'] if x not in findAnomalies]
+    filtered = [x for x in filtered if str(x) != 'nan']
+    print('-------------------------------')
+    print('Temperature Median after filtering in Lab 1:\n{}\nTemperature Variance after filtering in Lab 1:\n{}'.format(median(filtered),
+                                                variance(filtered)))
     plt.show()
 
-    df1['combine'] = df1[['class','lab1','office']].min(axis = 1)
-    findAnomalies = detectAnomalies(df1['combine'])
-    print(findAnomalies)
