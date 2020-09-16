@@ -59,7 +59,7 @@ def detectAnomalies(data):
     lowerBound = meanVal - detect_anomaly
     upperBound = meanVal + detect_anomaly
 
-    # loop through data to identify anomalies
+    # loop through data to identify anomalies and add them to list to be returned
     for val in data:
         if val > upperBound or val < lowerBound:
             anomalies.append(val)
@@ -130,18 +130,17 @@ if __name__ == "__main__":
 
     print('-------------------------------')
     findAnomalies = detectAnomalies(df1['office'])
-    print('Anomalies in office: ',findAnomalies)
-    print('Percent of anomalies in office: ', len(findAnomalies)/len(df1['office']))
+    print('Percent of anomalies in office: ', (len(findAnomalies)/len(df1['office']))*100)
     findAnomalies = detectAnomalies(df1['class1'])
-    print('Anomalies in class1: ',findAnomalies)
-    print('Percent of anomalies in office: ', len(findAnomalies)/len(df1['class1']))
+    print('Percent of anomalies in class1: ', (len(findAnomalies)/len(df1['class1']))*100)
     findAnomalies = detectAnomalies(df1['lab1'])
-    print('Anomalies in lab1: ',findAnomalies)
-    print('Percent of anomalies in office: ', len(findAnomalies)/len(df1['lab1']))
-
+    print('Percent of anomalies in lab1: ', (len(findAnomalies)/len(df1['lab1']))*100)
+    
+    #filter out nan values and remove anomalies returned from findAnomalies function 
     filtered = [x for x in df1['lab1'] if x not in findAnomalies]
     filtered = [x for x in filtered if str(x) != 'nan']
     print('-------------------------------')
     print('Temperature Median after filtering in Lab 1:\n{}\nTemperature Variance after filtering in Lab 1:\n{}'.format(median(filtered),
                                                 variance(filtered)))
+    
     plt.show()
