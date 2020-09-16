@@ -52,7 +52,7 @@ We ran the server and collected the data in the file 'data.txt', which has 3130 
 
 ## Task 3:
 * For our anomaly detection algorithm, we defined an anomaly to be outside of two standard deviations of the mean, and used these values to find anomalies and add them to a list, which is then returned. This was done in the analyze.py file, in the function detectAnomalies. The output of the function is displayed below, and shows a list of all the anomalies from each room, as well as the percentage of anomalies out of the total values collected.
- <img src="./img/anomalies.PNG" width="100%" />
+ <img src="./img/anomalyPercent.PNG" width="100%" />
  * After filtering out the anomalies, we got the following new median and variance for the temperature data in Lab1:
  
  Room | Median | Variance 
