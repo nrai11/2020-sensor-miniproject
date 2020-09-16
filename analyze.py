@@ -18,7 +18,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats.kde import gaussian_kde
 from numpy import linspace
-
+from statistics import median
+from statistics import variance 
 
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
