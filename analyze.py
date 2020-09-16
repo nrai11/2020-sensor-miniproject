@@ -110,7 +110,7 @@ if __name__ == "__main__":
     #find time interval median and variance
     CO2 = data['co2']
     diff = np.diff(CO2.index).astype(np.int64) * 1e-9
-    print('Time interval median:\n{}\nTime interval variance:\n{}'.format(np.median(diff), np.var(diff)))
+    print('Time interval mean:\n{}\nTime interval variance:\n{}'.format(np.mean(diff), np.var(diff)))
 
 
     #find actual lowest and highest time interval
@@ -126,6 +126,7 @@ if __name__ == "__main__":
     plt.title("PDF of time interval (removed 0.05 and 0.95 quantile)")
     plt.plot( dist_space, kde(dist_space) )
     plt.show()
-    
+
+    df1['combine'] = df1[['class','lab1','office']].min(axis = 1)
     findAnomalies = detectAnomalies(df1['combine'])
     print(findAnomalies)
