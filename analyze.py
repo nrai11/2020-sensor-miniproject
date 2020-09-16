@@ -125,6 +125,18 @@ if __name__ == "__main__":
     plt.figure(6)
     plt.title("PDF of time interval (removed 0.05 and 0.95 quantile)")
     plt.plot( dist_space, kde(dist_space) )
+
+    print('-------------------------------')
+    findAnomalies = detectAnomalies(df1['office'])
+    print('Anomalies in office: ',findAnomalies)
+    print('Percent of anomalies in office: ', len(findAnomalies)/len(df1['office']))
+    findAnomalies = detectAnomalies(df1['class1'])
+    print('Anomalies in class1: ',findAnomalies)
+    print('Percent of anomalies in office: ', len(findAnomalies)/len(df1['class1']))
+    findAnomalies = detectAnomalies(df1['lab1'])
+    print('Anomalies in lab1: ',findAnomalies)
+    print('Percent of anomalies in office: ', len(findAnomalies)/len(df1['lab1']))
+
     plt.show()
 
     df1['combine'] = df1[['class','lab1','office']].min(axis = 1)
