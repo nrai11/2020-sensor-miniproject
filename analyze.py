@@ -18,6 +18,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats.kde import gaussian_kde
 from numpy import linspace
+from statistics import median
+from statistics import variance
 
 
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
@@ -123,7 +125,7 @@ if __name__ == "__main__":
 
 
     plt.figure(6)
-    plt.title("PDF of time interval (removed 0.05 and 0.95 quantile)")
+    plt.title("PDF of time interval (removed 0.5 and 0.95 quantile)")
     plt.plot( dist_space, kde(dist_space) )
 
     print('-------------------------------')
@@ -136,11 +138,10 @@ if __name__ == "__main__":
     findAnomalies = detectAnomalies(df1['lab1'])
     print('Anomalies in lab1: ',findAnomalies)
     print('Percent of anomalies in office: ', len(findAnomalies)/len(df1['lab1']))
-    
+
     filtered = [x for x in df1['lab1'] if x not in findAnomalies]
     filtered = [x for x in filtered if str(x) != 'nan']
     print('-------------------------------')
     print('Temperature Median after filtering in Lab 1:\n{}\nTemperature Variance after filtering in Lab 1:\n{}'.format(median(filtered),
                                                 variance(filtered)))
     plt.show()
-
