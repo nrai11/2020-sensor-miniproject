@@ -4,7 +4,7 @@ The greeting string is: ECE Senior Capstone IoT simulator
 ## Task 1: 
 Code was added to client.py to save data to a file when a .txt file name is provided when it is run.
 ## Task 2: 
-We ran the server and collected the data in the file 'data.txt', which has 3130 data values.
+We ran the server and collected the data in the file 'data.txt', which has 3130 data values. We have already calculated the median and variance for all sensors in three rooms, and they are listed below.
 * For the **temperature data**, the median and variance of each room are: 
 
  Room | Median | Variance 
@@ -20,7 +20,7 @@ We ran the server and collected the data in the file 'data.txt', which has 3130 
  lab1 | 5.0 | 5.099918 
  office | 2.0 | 1.808376 
  
-* We plotted probability density function for each sensor type from the office room which are as follow: 
+* We plotted probability density function for each sensor type from the **office** room which are as follow: 
 
 *PDF are plotted in two formats, the left one is line graph and the right one is histogram.*
 
