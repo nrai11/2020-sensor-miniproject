@@ -128,6 +128,10 @@ if __name__ == "__main__":
     plt.title("PDF of time interval (removed 0.5 and 0.95 quantile)")
     plt.plot( dist_space, kde(dist_space) )
 
+    plt.figure(7)
+    plt.hist( kde(dist_space))
+
+
     print('-------------------------------')
     findAnomalies = detectAnomalies(df1['office'])
     print('Percent of anomalies in office: ', (len(findAnomalies)/len(df1['office']))*100)
@@ -135,12 +139,12 @@ if __name__ == "__main__":
     print('Percent of anomalies in class1: ', (len(findAnomalies)/len(df1['class1']))*100)
     findAnomalies = detectAnomalies(df1['lab1'])
     print('Percent of anomalies in lab1: ', (len(findAnomalies)/len(df1['lab1']))*100)
-    
-    #filter out nan values and remove anomalies returned from findAnomalies function 
+
+    #filter out nan values and remove anomalies returned from findAnomalies function
     filtered = [x for x in df1['lab1'] if x not in findAnomalies]
     filtered = [x for x in filtered if str(x) != 'nan']
     print('-------------------------------')
     print('Temperature Median after filtering in Lab 1:\n{}\nTemperature Variance after filtering in Lab 1:\n{}'.format(median(filtered),
                                                 variance(filtered)))
-    
+
     plt.show()
