@@ -114,7 +114,6 @@ if __name__ == "__main__":
     diff = np.diff(CO2.index).astype(np.int64) * 1e-9
     print('Time interval mean:\n{}\nTime interval variance:\n{}'.format(np.mean(diff), np.var(diff)))
 
-
     #find actual lowest and highest time interval
     [low, high] = np.quantile(diff, [0.5, 0.95])
 
@@ -129,7 +128,7 @@ if __name__ == "__main__":
     plt.plot( dist_space, kde(dist_space) )
 
     plt.figure(7)
-    plt.hist( kde(dist_space))
+    plt.hist(diff)
 
 
     print('-------------------------------')
