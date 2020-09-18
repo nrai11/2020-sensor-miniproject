@@ -128,6 +128,7 @@ if __name__ == "__main__":
     plt.plot( dist_space, kde(dist_space) )
 
     plt.figure(7)
+    plt.title("Histogram of time interval")
     plt.hist(diff)
 
 
