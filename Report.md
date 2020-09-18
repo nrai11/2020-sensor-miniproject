@@ -43,11 +43,11 @@ We ran the server and collected the data in the file 'data.txt', which has 3130 
 1.0186770140620007 | 1.062734582236113
 
 
-**Probability density function of the time interval**
+**Probability density function and histogram of the time interval**
 
-<img src="./img/pdf_time.png" width="45%" />
+<img src="./img/pdf_time.png" width="45%" /><img src="./img/hist_time.png" width="45%" />
 
-* The PDF above shows a plot with 0.5 and 0.95 quantile removed to emphasize where most of the density are. As seen from the PDF of time intervals above, most of the time intervals are between 0.7 to 0.8 seconds. Connection intervals in large systems are usually in unit of millisecond (e.g. 0.007 seconds) so this PDF does not qutie mimic distribution for connection intervals in large system in terms of numbers, but it does reflect distribution for connection intervals in terms of density. In large system, the connection intervals (time in seconds) is usually less than what is on the PDF above. However, a big factor that contributes to number discrepancy might be that the simulation wait to sends readings from three sensors out at the same time. In terms of density represented on the PDF, a well-known distribution for connection intervals in large system could have similar behavior. Most the readings tend to fall in millisecond, however, there is also a chance that sometimes, sensors can transmit information faster or slower than the average millisecond.
+* The PDF above shows a plot with 0.5 and 0.95 quantile removed to emphasize where most of the density are. The histogram above are plotted without any quantile removed. As seen from the histogram of time intervals above, most of the time intervals are between 0.1 to 0.8 seconds and there are some outliers up to 7 seconds. Connection intervals in large systems are usually in unit of millisecond (e.g. 0.007 seconds) so this hisogram does not qutie mimic distribution for connection intervals in large system in terms of numbers, but it does reflect distribution for connection intervals in terms of density. In large system, the connection intervals (time in seconds) is usually less than or similar to what is on the histogram above. A big factor that contributes to number discrepancy might be that the simulation wait to sends readings from three sensors out at the same time. In terms of density represented on the histogram, a well-known distribution for connection intervals in large system could have similar behavior which is that most of the sensor will transmit information in millisecond, but there could be some outliers in sensor readings due to external errors. Most the readings tend to fall in millisecond, however, there is also a chance that sometimes, sensors can transmit information faster or slower than the average millisecond due to error factors.
 
 
 ## Task 3:
